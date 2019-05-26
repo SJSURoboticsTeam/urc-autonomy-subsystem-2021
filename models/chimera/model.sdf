@@ -1,8 +1,35 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
   <model name="chimera">
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <alwayson>true</alwayson>
+      <updaterate>1.0</updaterate>
+      <bodyname>base_link</bodyname>
+      <topicname>/fix</topicname>
+      <velocitytopicname>/fix_velocity</velocitytopicname>
+      <drift>5.0 5.0 5.0</drift>
+      <gaussiannoise>0.1 0.1 0.1</gaussiannoise>
+      <velocitydrift>0 0 0</velocitydrift>
+      <velocitygaussiannoise>0.1 0.1 0.1</velocitygaussiannoise>
+    </plugin>
     <static>false</static>
     <link name = 'chassis'>
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <visualize>true</visualize>
+        <topic>haimaidmwfu</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+          <topicName>imu</topicName>
+          <bodyName>imu_link</bodyName>
+          <updateRateHZ>10.0</updateRateHZ>
+          <gaussianNoise>0.0</gaussianNoise>
+          <xyzOffset>0 0 0</xyzOffset>
+          <rpyOffset>0 0 0</rpyOffset>
+          <frameName>imu_link</frameName>
+        </plugin>
+      </sensor>
       <pose> 0 0 .6 0 0 0 </pose>
       <inertial>
           <inertia>
