@@ -16,70 +16,6 @@
     </plugin>
     <static>false</static>
     <link name = 'chassis'>
-      <sensor name="imu_sensor_0" type="imu">
-        <pose>0 0 0.1 0 0 0</pose>
-        <always_on>1</always_on>
-        <update_rate>100.0</update_rate>
-        <visualize>true</visualize>
-        <topic>/imu0/data</topic>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu0_plugin">
-          <topicName>/imu0/data</topicName>
-          <bodyName>imu0_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
-          <gaussianNoise>0.0</gaussianNoise>
-          <xyzOffset>0 0 0</xyzOffset>
-          <rpyOffset>0 0 0</rpyOffset>
-          <frameName>imu0_link</frameName>
-        </plugin>
-      </sensor>
-      <sensor name="imu_sensor_1" type="imu">
-        <pose>0.1 0 0 0 0 0</pose>
-        <always_on>1</always_on>
-        <update_rate>100.0</update_rate>
-        <visualize>true</visualize>
-        <topic>/imu1/data</topic>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu1_plugin">
-          <topicName>/imu1/data</topicName>
-          <bodyName>imu1_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
-          <gaussianNoise>0.0</gaussianNoise>
-          <xyzOffset>0 0 0</xyzOffset>
-          <rpyOffset>0 0 0</rpyOffset>
-          <frameName>imu1_link</frameName>
-        </plugin>
-      </sensor>
-      <sensor name="imu_sensor_2" type="imu">
-        <pose>-0.05 0.0866 0 0 0 0</pose>
-        <always_on>1</always_on>
-        <update_rate>100.0</update_rate>
-        <visualize>true</visualize>
-        <topic>/imu2/data</topic>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu2_plugin">
-          <topicName>/imu2/data</topicName>
-          <bodyName>imu2_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
-          <gaussianNoise>0.0</gaussianNoise>
-          <xyzOffset>0 0 0</xyzOffset>
-          <rpyOffset>0 0 0</rpyOffset>
-          <frameName>imu2_link</frameName>
-        </plugin>
-      </sensor>
-      <sensor name="imu_sensor_3" type="imu">
-        <pose>-0.05 -0.0866 0 0 0 0</pose>
-        <always_on>1</always_on>
-        <update_rate>100.0</update_rate>
-        <visualize>true</visualize>
-        <topic>/imu3/data</topic>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu3_plugin">
-          <topicName>/imu3/data</topicName>
-          <bodyName>imu3_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
-          <gaussianNoise>0.0</gaussianNoise>
-          <xyzOffset>0 0 0</xyzOffset>
-          <rpyOffset>0 0 0</rpyOffset>
-          <frameName>imu3_link</frameName>
-        </plugin>
-      </sensor>
       <pose> 0 0 .6 0 0 0 </pose>
       <inertial>
           <inertia>
@@ -96,7 +32,7 @@
         <pose>0 0 .25 0 0 0</pose>
         <geometry>
           <box>
-            <size>.1 .1 .5</size>
+            <size>.1 .1 .4</size>
           </box>
         </geometry>
       </collision>
@@ -107,7 +43,7 @@
         <pose>0 0 .25 0 0 0</pose>
         <geometry>
           <box>
-            <size>.1 .1 .5</size>
+            <size>.1 .1 .4</size>
           </box>
         </geometry>
       </visual>
@@ -207,6 +143,182 @@
           </box>
         </geometry>
       </visual>
+    </link>
+    <link name = "imu0-enclosure">
+       <pose>0 0 1.075 0 0 0</pose>
+       <inertial>
+          <inertia>
+              <ixx>1e-3</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-3</iyy>
+              <iyz>0</iyz>
+              <izz>1e-3</izz>
+          </inertia>
+          <mass>0.0003</mass>
+       </inertial>
+       <collision name = "imu0-coll">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </collision>
+       <visual name = "imu0-vis">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </visual>
+      <sensor name="imu_sensor_0" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <visualize>true</visualize>
+        <topic>/imu0/data</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu0_plugin">
+          <topicName>/imu0/data</topicName>
+          <bodyName>imu0_link</bodyName>
+          <updateRateHZ>10.0</updateRateHZ>
+          <gaussianNoise>0.0</gaussianNoise>
+          <xyzOffset>0 0 0</xyzOffset>
+          <rpyOffset>0 0 0</rpyOffset>
+          <frameName>imu0_link</frameName>
+        </plugin>
+      </sensor>
+    </link>
+    <link name = "imu1-enclosure">
+       <pose>0 0.2 0.675 0 0 0</pose>
+       <inertial>
+          <inertia>
+              <ixx>1e-3</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-3</iyy>
+              <iyz>0</iyz>
+              <izz>1e-3</izz>
+          </inertia>
+          <mass>0.0003</mass>
+       </inertial>
+       <collision name = "imu1-coll">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </collision>
+       <visual name = "imu1-vis">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </visual>
+      <sensor name="imu_sensor_1" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <visualize>true</visualize>
+        <topic>/imu1/data</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu1_plugin">
+          <topicName>/imu1/data</topicName>
+          <bodyName>imu1_link</bodyName>
+          <updateRateHZ>10.0</updateRateHZ>
+          <gaussianNoise>0.0</gaussianNoise>
+          <xyzOffset>0 0 0</xyzOffset>
+          <rpyOffset>0 0 0</rpyOffset>
+          <frameName>imu1_link</frameName>
+        </plugin>
+      </sensor>
+    </link>
+    <link name = "imu2-enclosure">
+       <pose>0.1732050808 -0.1 0.675 0 0 0</pose>
+       <inertial>
+          <inertia>
+              <ixx>1e-3</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-3</iyy>
+              <iyz>0</iyz>
+              <izz>1e-3</izz>
+          </inertia>
+          <mass>0.0003</mass>
+       </inertial>
+       <collision name = "imu2-coll">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </collision>
+       <visual name = "imu2-vis">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </visual>
+      <sensor name="imu_sensor_2" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <visualize>true</visualize>
+        <topic>/imu2/data</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu2_plugin">
+          <topicName>/imu2/data</topicName>
+          <bodyName>imu2_link</bodyName>
+          <updateRateHZ>10.0</updateRateHZ>
+          <gaussianNoise>0.0</gaussianNoise>
+          <xyzOffset>0 0 0</xyzOffset>
+          <rpyOffset>0 0 0</rpyOffset>
+          <frameName>imu2_link</frameName>
+        </plugin>
+      </sensor>
+    </link>
+    <link name = "imu3-enclosure">
+       <pose>-0.1732050808 -0.1 0.675 0 0 0</pose>
+       <inertial>
+          <inertia>
+              <ixx>1e-3</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-3</iyy>
+              <iyz>0</iyz>
+              <izz>1e-3</izz>
+          </inertia>
+          <mass>0.0003</mass>
+       </inertial>
+       <collision name = "imu3-coll">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </collision>
+       <visual name = "imu3-vis">
+         <geometry>
+           <box>
+             <size>.05 .05 .05</size>
+           </box>
+         </geometry>
+       </visual>
+      <sensor name="imu_sensor_3" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>100.0</update_rate>
+        <visualize>true</visualize>
+        <topic>/imu3/data</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu3_plugin">
+          <topicName>/imu3/data</topicName>
+          <bodyName>imu3_link</bodyName>
+          <updateRateHZ>10.0</updateRateHZ>
+          <gaussianNoise>0.0</gaussianNoise>
+          <xyzOffset>0 0 0</xyzOffset>
+          <rpyOffset>0 0 0</rpyOffset>
+          <frameName>imu3_link</frameName>
+        </plugin>
+      </sensor>
     </link>
     <link name = "bow-stabilizer">
       <pose>0 0.5386752954 0.6 0 0 1.570796327</pose>
@@ -536,6 +648,22 @@
         </geometry>
       </visual>
     </link>
+    <joint name = "imu0_joint" type="fixed">
+      <child>imu0-enclosure</child>
+      <parent>chassis</parent>
+    </joint>
+    <joint name = "imu1_joint" type="fixed">
+      <child>imu1-enclosure</child>
+      <parent>chassis</parent>
+    </joint>
+    <joint name = "imu2_joint" type="fixed">
+      <child>imu2-enclosure</child>
+      <parent>chassis</parent>
+    </joint>
+    <joint name = "imu3_joint" type="fixed">
+      <child>imu3-enclosure</child>
+      <parent>chassis</parent>
+    </joint>
     <joint name = "chassis_bow-stabilizer" type="revolute">
       <pose>-0.25 0 0 1.570796327 0 0</pose>
       <child>bow-stabilizer</child>
@@ -631,6 +759,14 @@
       <axis>
         <xyz>-0.5 -0.8660254038 0</xyz>
       </axis>
+    </joint>
+    <include>
+      <uri>model://intel_realsense_r200</uri>
+      <pose>0 -0.235 0.6 0 0 -1.570796327</pose>
+    </include>
+    <joint name="rgbd_joint" type="fixed">
+      <child>intel_realsense_r200::link</child>
+      <parent>chassis</parent>
     </joint>
   </model>
 </sdf>
