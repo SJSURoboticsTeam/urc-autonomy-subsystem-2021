@@ -63,7 +63,7 @@
           <frameName>imu2_link</frameName>
         </plugin>
       </sensor>
-      <sensor name="imu_sensor_3" type="imui">
+      <sensor name="imu_sensor_3" type="imu">
         <pose>0.05 -0.0866 0 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>100.0</update_rate>
