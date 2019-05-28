@@ -180,7 +180,7 @@
         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu0_plugin">
           <topicName>/imu0/data</topicName>
           <bodyName>imu0_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
+          <updateRateHZ>100.0</updateRateHZ>
           <gaussianNoise>0.0</gaussianNoise>
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
@@ -224,7 +224,7 @@
         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu1_plugin">
           <topicName>/imu1/data</topicName>
           <bodyName>imu1_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
+          <updateRateHZ>100.0</updateRateHZ>
           <gaussianNoise>0.0</gaussianNoise>
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
@@ -268,7 +268,7 @@
         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu2_plugin">
           <topicName>/imu2/data</topicName>
           <bodyName>imu2_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
+          <updateRateHZ>100.0</updateRateHZ>
           <gaussianNoise>0.0</gaussianNoise>
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
@@ -312,7 +312,7 @@
         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu3_plugin">
           <topicName>/imu3/data</topicName>
           <bodyName>imu3_link</bodyName>
-          <updateRateHZ>10.0</updateRateHZ>
+          <updateRateHZ>100.0</updateRateHZ>
           <gaussianNoise>0.0</gaussianNoise>
           <xyzOffset>0 0 0</xyzOffset>
           <rpyOffset>0 0 0</rpyOffset>
