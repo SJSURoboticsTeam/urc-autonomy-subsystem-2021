@@ -1,0 +1,32 @@
+orthrus:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  red-wheel_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: red-coupler_wheel
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  green-wheel_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: green-coupler_wheel
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  blue-wheel_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: blue-coupler_wheel
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  red-coupler_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: red-stabilizer_coupler
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  green-coupler_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: green-stabilizer_coupler
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  blue-coupler_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: blue-stabilizer_coupler
+    pid: {p: 100.0, i: 0.01, d: 10.0}

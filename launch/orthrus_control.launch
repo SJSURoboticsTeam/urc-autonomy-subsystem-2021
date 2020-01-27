@@ -1,0 +1,28 @@
+<launch>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find pri_sjr_gazebo)/config/orthrus_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/orthrus" args="red-wheel_position_controller 
+        green-wheel_position_controller 
+        blue-wheel_position_controller 
+        red-coupler_position_controller 
+        green-coupler_position_controller 
+        blue-coupler_position_controller 
+        joint_state_controller"/>
+
+  <param name="robot_description" command="cat '$(find pri_sjr_gazebo)/models/chimera/model.urdf'"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+    <remap from="/joint_states" to="/orthrus/joint_states" />
+  </node>
+
+  
+
+</launch>
