@@ -1,6 +1,14 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
   <model name="chimera">
+
+      <!-- Plugin code to enable ROS control -->
+      <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotNamespace>/orthus</robotNamespace>
+        </plugin>
+      </gazebo>
+
     <plugin name="gps_receiver" filename="libhector_gazebo_ros_gps.so">
       <alwayson>true</alwayson>
       <updaterate>1.0</updaterate>
@@ -94,7 +102,7 @@
           </box>
         </geometry>
       </visual>
-      <collision name = 'port-stern-coll'>
+      <collision name = 'red-coll'>
         <pose>-0.07679505847	-0.04433764768	0	0	0	0.5235987756</pose>
         <geometry>
           <box>
@@ -102,7 +110,7 @@
           </box>
         </geometry>
       </collision>
-      <visual name='port-stern-vis'>
+      <visual name='red-vis'>
         <pose>-0.07679505847	-0.04433764768	0	0	0	0.5235987756</pose>
         <geometry>
           <box>
@@ -126,7 +134,7 @@
           </box>
         </geometry>
       </visual>
-      <collision name = 'starboard-stern-coll'>
+      <collision name = 'blue-coll'>
         <pose>0.07679505847	-0.04433764768	0	0	0	2.617993878</pose>
         <geometry>
           <box>
@@ -134,7 +142,7 @@
           </box>
         </geometry>
       </collision>
-      <visual name='starboard-stern-vis'>
+      <visual name='blue-vis'>
         <pose>0.07679505847	-0.04433764768	0	0	0	2.617993878</pose>
         <geometry>
           <box>
@@ -159,7 +167,7 @@
         </geometry>
       </visual>
     </link>
-    <link name = "bow-stabilizer">
+    <link name = "green-stabilizer">
       <pose>0 0.5386752954 0.6 0 0 1.570796327</pose>
       <inertial>
           <inertia>
@@ -185,9 +193,15 @@
             <size>0.5 0.2 0.1</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "bow-coupler">
+    <link name = "green-coupler">
       <pose>0 0.6886752954 0.4 0 0 1.570796327</pose>
       <inertial>
           <inertia>
@@ -215,6 +229,12 @@
             <size>0.2 0.2 0.025</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
       <collision name = "coupler-side-coll">
         <pose>0.075 0 0 0 0 0</pose>
@@ -231,9 +251,15 @@
             <size>0.2 0.05 0.3</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "bow-wheel">
+    <link name = "green-wheel">
       <pose>0 0.6886752954 0.25 1.570796327 0 1.570796327</pose>
       <inertial>
           <inertia>
@@ -261,9 +287,15 @@
             <length>0.1</length>
           </cylinder>
         </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "port-stern-stabilizer">
+    <link name = "red-stabilizer">
       <pose>-0.4665064902 -0.2693376477 0.6 0 0 3.665191429</pose>
       <inertial>
           <inertia>
@@ -282,6 +314,12 @@
             <size>0.5 0.2 0.1</size>
           </box>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </collision>
       <visual name = "stabilizer-vis">
         <geometry>
@@ -289,9 +327,15 @@
             <size>0.5 0.2 0.1</size>
           </box>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "port-stern-coupler">
+    <link name = "red-coupler">
       <pose>-0.5964103007 -0.3443376477 0.4 0 0 3.665191429</pose>
       <inertial>
           <inertia>
@@ -319,6 +363,12 @@
             <size>0.2 0.2 0.025</size>
           </box>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
       <collision name = "coupler-side-coll">
         <pose>0.075 0 0 0 0 0</pose>
@@ -335,9 +385,15 @@
             <size>0.2 0.05 0.3</size>
           </box>
         </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "port-stern-wheel">
+    <link name = "red-wheel">
       <pose>-0.5964103007 -0.3443376477 0.25 1.570796327 0 3.665191429</pose>
       <inertial>
           <inertia>
@@ -365,9 +421,15 @@
             <length>0.1</length>
           </cylinder>
         </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 0</emissive>
+          </material>
       </visual>
     </link>
-    <link name = "starboard-stern-stabilizer">
+    <link name = "blue-stabilizer">
       <pose>0.4665064902 -0.2693376477 0.6 0 0 5.759586532</pose>
       <inertial>
           <inertia>
@@ -393,9 +455,15 @@
             <size>0.5 0.2 0.1</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "starboard-stern-coupler">
+    <link name = "blue-coupler">
       <pose>0.5964103007 -0.3443376477 0.4 0 0 5.759586532</pose>
       <inertial>
           <inertia>
@@ -423,6 +491,13 @@
             <size>0.2 0.2 0.025</size>
           </box>
         </geometry>
+
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
       <collision name = "coupler-side-right-coll">
         <pose>0 0.075 0 0 0 0</pose>
@@ -439,6 +514,12 @@
             <size>0.2 0.05 0.3</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
       <collision name = "coupler-side-left-coll">
         <pose>0 -0.075 0 0 0 0</pose>
@@ -455,9 +536,15 @@
             <size>0.2 0.05 0.3</size>
           </box>
         </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <link name = "starboard-stern-wheel">
+    <link name = "blue-wheel">
       <pose>0.5964103007 -0.3443376477 0.25 1.570796327 0 5.759586532</pose>
       <inertial>
           <inertia>
@@ -485,11 +572,17 @@
             <length>0.1</length>
           </cylinder>
         </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
       </visual>
     </link>
-    <joint name = "chassis_bow-stabilizer" type="revolute">
+    <joint name = "chassis_green-stabilizer" type="revolute">
       <pose>-0.25 0 0 1.570796327 0 0</pose>
-      <child>bow-stabilizer</child>
+      <child>green-stabilizer</child>
       <parent>chassis</parent>
       <axis>
         <limit>
@@ -499,10 +592,10 @@
         <xyz>1 0 0</xyz>
       </axis>
     </joint>
-    <joint name = "bow-stabilizer_coupler" type="revolute">
+    <joint name = "green-stabilizer_coupler" type="revolute">
       <pose>0 0 0.15 0 0 0</pose>
-      <child>bow-coupler</child>
-      <parent>bow-stabilizer</parent>
+      <child>green-coupler</child>
+      <parent>green-stabilizer</parent>
       <axis>
         <limit>
           <lower>-3.141592654</lower>
@@ -511,17 +604,17 @@
         <xyz>0 0 1</xyz>
       </axis>
     </joint>
-    <joint name = "bow-coupler_wheel" type="revolute">
+    <joint name = "green-coupler_wheel" type="revolute">
       <pose>0 0 0 0 0 0</pose>
-      <child>bow-wheel</child>
-      <parent>bow-coupler</parent>
+      <child>green-wheel</child>
+      <parent>green-coupler</parent>
       <axis>
         <xyz>1 0 0</xyz>
       </axis>
     </joint>
-    <joint name = "chassis_port-stern-stabilizer" type="revolute">
+    <joint name = "chassis_red-stabilizer" type="revolute">
       <pose>-0.25 0 0 1.570796327 0 0</pose>
-      <child>port-stern-stabilizer</child>
+      <child>red-stabilizer</child>
       <parent>chassis</parent>
       <axis>
         <limit>
@@ -531,10 +624,10 @@
         <xyz>-0.5 0.8660254038 0</xyz>
       </axis>
     </joint>
-    <joint name = "port-stern-stabilizer_coupler" type="revolute">
+    <joint name = "red-stabilizer_coupler" type="revolute">
       <pose>0 0 0.15 0 0 0</pose>
-      <child>port-stern-coupler</child>
-      <parent>port-stern-stabilizer</parent>
+      <child>red-coupler</child>
+      <parent>red-stabilizer</parent>
       <axis>
         <limit>
           <lower>-3.141592654</lower>
@@ -543,17 +636,17 @@
         <xyz>0 0 1</xyz>
       </axis>
     </joint>
-    <joint name = "port-stern-coupler_wheel" type="revolute">
+    <joint name = "red-coupler_wheel" type="revolute">
       <pose>0 0 0 0 0 0</pose>
-      <child>port-stern-wheel</child>
-      <parent>port-stern-coupler</parent>
+      <child>red-wheel</child>
+      <parent>red-coupler</parent>
       <axis>
         <xyz>-0.5 0.8660254038 0</xyz>
       </axis>
     </joint>
-    <joint name = "chassis_starboard-stern-stabilizer" type="revolute">
+    <joint name = "chassis_blue-stabilizer" type="revolute">
       <pose>-0.25 0 0 1.570796327 0 0</pose>
-      <child>starboard-stern-stabilizer</child>
+      <child>blue-stabilizer</child>
       <parent>chassis</parent>
       <axis>
         <limit>
@@ -563,10 +656,10 @@
         <xyz>-0.5 -0.8660254038 0</xyz>
       </axis>
     </joint>
-    <joint name = "starboard-stern-stabilizer_coupler" type="revolute">
+    <joint name = "blue-stabilizer_coupler" type="revolute">
       <pose>0 0 0.15 0 0 0</pose>
-      <child>starboard-stern-coupler</child>
-      <parent>starboard-stern-stabilizer</parent>
+      <child>blue-coupler</child>
+      <parent>blue-stabilizer</parent>
       <axis>
         <limit>
           <lower>-3.141592654</lower>
@@ -575,14 +668,76 @@
         <xyz>0 0 1</xyz>
       </axis>
     </joint>
-    <joint name = "starboard-stern-coupler_wheel" type="revolute">
+    <joint name = "blue-coupler_wheel" type="revolute">
       <pose>0 0 0 0 0 0</pose>
-      <child>starboard-stern-wheel</child>
-      <parent>starboard-stern-coupler</parent>
+      <child>blue-wheel</child>
+      <parent>blue-coupler</parent>
       <axis>
         <xyz>-0.5 -0.8660254038 0</xyz>
       </axis>
     </joint>
+
+    <transmission name="green-stabilizer_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="green-stabilizer_coupler">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_green-stabilizer">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+    <transmission name="starboard-stabilizer_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="green-stabilizer_coupler">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_green-stabilizer">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+    <transmission name="stern-stabilizer_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="stern-stabilizer_coupler">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_stern-stabilizer_coupler">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="green-wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="green-coupler_wheel">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_green-wheel">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+    <transmission name="bow-starboard_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="starboard-coupler_wheel">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_starboard-wheel">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+    <transmission name="stern-wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="stern-coupler_wheel">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_stern-wheel">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
   </model>
 </sdf>
 

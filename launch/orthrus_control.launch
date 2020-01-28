@@ -7,15 +7,17 @@
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/orthrus" args="red-wheel_position_controller 
-        green-wheel_position_controller 
-        blue-wheel_position_controller 
-        red-coupler_position_controller 
-        green-coupler_position_controller 
-        blue-coupler_position_controller 
+    output="screen" ns="/orthrus" args="red_wheel_position_controller 
+        green_wheel_position_controller 
+        blue_wheel_position_controller 
+        red_coupler_position_controller 
+        green_coupler_position_controller 
+        blue_coupler_position_controller 
         joint_state_controller"/>
 
   <param name="robot_description" command="cat '$(find pri_sjr_gazebo)/models/chimera/model.urdf'"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1.0 -unpause -urdf -model orthrus -param robot_description" respawn="false" output="screen" />
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"

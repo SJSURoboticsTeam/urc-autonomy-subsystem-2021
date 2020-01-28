@@ -5,28 +5,28 @@ orthrus:
     publish_rate: 50  
 
   # Position Controllers ---------------------------------------
-  red-wheel_position_controller:
+  red_wheel_position_controller:
     type: effort_controllers/JointPositionController
-    joint: red-coupler_wheel
+    joint: red_coupler_wheel
     pid: {p: 100.0, i: 0.01, d: 10.0}
-  green-wheel_position_controller:
+  green_wheel_position_controller:
     type: effort_controllers/JointPositionController
-    joint: green-coupler_wheel
+    joint: green_coupler_wheel
     pid: {p: 100.0, i: 0.01, d: 10.0}
-  blue-wheel_position_controller:
+  blue_wheel_position_controller:
     type: effort_controllers/JointPositionController
-    joint: blue-coupler_wheel
+    joint: blue_coupler_wheel
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  red-coupler_position_controller:
+  red_coupler_position_controller:
     type: effort_controllers/JointPositionController
-    joint: red-stabilizer_coupler
+    joint: red_stabilizer_coupler
     pid: {p: 100.0, i: 0.01, d: 10.0}
-  green-coupler_position_controller:
+  green_coupler_position_controller:
     type: effort_controllers/JointPositionController
-    joint: green-stabilizer_coupler
+    joint: green_stabilizer_coupler
     pid: {p: 100.0, i: 0.01, d: 10.0}
-  blue-coupler_position_controller:
+  blue_coupler_position_controller:
     type: effort_controllers/JointPositionController
-    joint: blue-stabilizer_coupler
+    joint: blue_stabilizer_coupler
     pid: {p: 100.0, i: 0.01, d: 10.0}

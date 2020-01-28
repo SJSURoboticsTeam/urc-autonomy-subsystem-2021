@@ -7,63 +7,63 @@
     </plugin>
   </gazebo>
 
-  <joint name="chassis_green-stabilizer" type="revolute">
+  <joint name="chassis_green-stabilizer" type="fixed">
     <parent link="chassis"/>
     <child link="green-stabilizer"/>
     <origin rpy="1.57079  0       1.57079" xyz="0       0.28867  0.6"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
   </joint>
-  <joint name="green-stabilizer_coupler" type="revolute">
+  <joint name="green_stabilizer_coupler" type="revolute">
     <parent link="green-stabilizer"/>
     <child link="green-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
   </joint>
-  <joint name="green-coupler_wheel" type="fixed">
+  <joint name="green_coupler_wheel" type="revolute">
     <parent link="green-coupler"/>
     <child link="green-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
+    <limit effort="1" lower="0" upper="0" velocity="1"/>
   </joint>
-  <joint name="chassis_red-stabilizer" type="revolute">
+  <joint name="chassis_red-stabilizer" type="fixed">
     <parent link="chassis"/>
     <child link="red-stabilizer"/>
     <origin rpy="1.57079  0      -2.61799" xyz="-0.25    -0.14433  0.6"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
   </joint>
-  <joint name="red-stabilizer_coupler" type="revolute">
+  <joint name="red_stabilizer_coupler" type="revolute">
     <parent link="red-stabilizer"/>
     <child link="red-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
   </joint>
-  <joint name="red-coupler_wheel" type="fixed">
+  <joint name="red_coupler_wheel" type="revolute">
     <parent link="red-coupler"/>
     <child link="red-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
     <axis xyz="0  0  1"/>
     <limit effort="0" lower="0" upper="0" velocity="0"/>
   </joint>
-  <joint name="chassis_blue-stabilizer" type="revolute">
+  <joint name="chassis_blue-stabilizer" type="fixed">
     <parent link="chassis"/>
     <child link="blue-stabilizer"/>
     <origin rpy="1.57079  0      -0.52359" xyz="0.25    -0.14433  0.6"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
   </joint>
-  <joint name="blue-stabilizer_coupler" type="revolute">
+  <joint name="blue_stabilizer_coupler" type="revolute">
     <parent link="blue-stabilizer"/>
     <child link="blue-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
   </joint>
-  <joint name="blue-coupler_wheel" type="fixed">
+  <joint name="blue_coupler_wheel" type="revolute">
     <parent link="blue-coupler"/>
     <child link="blue-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
@@ -73,63 +73,63 @@
 
   <transmission name="green-wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="green-coupler_wheel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="green_coupler_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="green-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="red-wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="red-coupler_wheel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="red_coupler_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="red-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="blue-wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="blue-coupler_wheel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="blue_coupler_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="blue-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
   <transmission name="red-coupler_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="red-stabilizer_coupler">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="red_stabilizer_coupler">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="red-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="green-coupler_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="green-stabilizer_coupler">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="green_stabilizer_coupler">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="green-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="blue-coupler_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="blue-stabilizer_coupler">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="blue_stabilizer_coupler">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="blue-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
@@ -137,7 +137,8 @@
     <inertial>
       <mass value="0.020"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx="2" ixy="0" ixz="0" iyy="2" iyz="0" izz="2"/>
     </inertial>
     <collision name="central-coll">
       <origin rpy="0  0  0" xyz="0    0    0.85"/>
@@ -228,8 +229,9 @@
     <inertial>
       <mass value="0.0030"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
-    </inertial>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
+    </inertial> 
     <collision name="stabilizer-coll">
       <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
       <geometry>
@@ -247,7 +249,8 @@
     <inertial>
       <mass value="0.001"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
     </inertial>
     <collision name="coupler-top-coll">
       <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
@@ -278,7 +281,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="wheel-coll">
       <origin rpy="0  0  0" xyz="0  0  0"/>
@@ -297,7 +301,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="stabilizer-coll">
       <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
@@ -316,7 +321,8 @@
     <inertial>
       <mass value="0.001"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
     </inertial>
     <collision name="coupler-top-coll">
       <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
@@ -347,7 +353,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="wheel-coll">
       <origin rpy="0  0  0" xyz="0  0  0"/>
@@ -366,7 +373,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="stabilizer-coll">
       <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
