@@ -19,14 +19,16 @@
     <child link="green-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
+    <limit effort="10.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
+    <dynamics damping="0.10" friction="0.0"/>
   </joint>
-  <joint name="green_coupler_wheel" type="revolute">
+  <joint name="green_coupler_wheel" type="continuous">
     <parent link="green-coupler"/>
     <child link="green-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
     <axis xyz="0  0  1"/>
-    <limit effort="1" lower="0" upper="0" velocity="1"/>
+    <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
+    <dynamics damping="0.7"/>
   </joint>
   <joint name="chassis_red-stabilizer" type="fixed">
     <parent link="chassis"/>
@@ -40,14 +42,16 @@
     <child link="red-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
+    <limit effort="100.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
-  <joint name="red_coupler_wheel" type="revolute">
+  <joint name="red_coupler_wheel" type="continuous">
     <parent link="red-coupler"/>
     <child link="red-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
+    <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
+    <dynamics damping="0.7"/>
   </joint>
   <joint name="chassis_blue-stabilizer" type="fixed">
     <parent link="chassis"/>
@@ -61,14 +65,16 @@
     <child link="blue-coupler"/>
     <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0.0" lower="-3.141592654" upper="3.141592654" velocity="0.0"/>
+    <limit effort="100.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
-  <joint name="blue_coupler_wheel" type="revolute">
+  <joint name="blue_coupler_wheel" type="continuous">
     <parent link="blue-coupler"/>
     <child link="blue-wheel"/>
     <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
     <axis xyz="0  0  1"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
+    <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
+    <dynamics damping="0.7"/>
   </joint>
 
   <transmission name="green-wheel_trans">
@@ -78,7 +84,6 @@
     </joint>
     <actuator name="green-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="red-wheel_trans">
@@ -88,7 +93,6 @@
     </joint>
     <actuator name="red-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="blue-wheel_trans">
@@ -98,7 +102,6 @@
     </joint>
     <actuator name="blue-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
@@ -109,7 +112,6 @@
     </joint>
     <actuator name="red-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="green-coupler_trans">
@@ -119,7 +121,6 @@
     </joint>
     <actuator name="green-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="blue-coupler_trans">
@@ -129,7 +130,6 @@
     </joint>
     <actuator name="blue-coupler_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
@@ -393,7 +393,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="coupler-top-coll">
       <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
@@ -436,7 +437,8 @@
     <inertial>
       <mass value="0.003"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="wheel-coll">
       <origin rpy="0  0  0" xyz="0  0  0"/>
