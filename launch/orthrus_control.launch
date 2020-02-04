@@ -7,9 +7,9 @@
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/orthrus" args="red_wheel_position_controller 
-        green_wheel_position_controller 
-        blue_wheel_position_controller 
+    output="screen" ns="/orthrus" args="red_wheel_velocity_controller 
+        green_wheel_velocity_controller 
+        blue_wheel_velocity_controller 
         red_coupler_position_controller 
         green_coupler_position_controller 
         blue_coupler_position_controller 
