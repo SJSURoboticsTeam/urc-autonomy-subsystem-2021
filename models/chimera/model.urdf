@@ -5,7 +5,22 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/orthrus</robotNamespace>
     </plugin>
+
+    <material name="blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+    <material name="red">
+      <color rgba="0.8 0.0 0.0 1.0"/>
+    </material>
   </gazebo>
+
+  
 
   <!-- total X: 0.45167, y: 0.25767 -->
 
