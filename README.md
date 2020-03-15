@@ -1,13 +1,21 @@
-# Models for Gazebo simulation, SJSU Robotics 2019
+# Models for Gazebo simulation, SJSU Robotics 2020
 ## Usage
-### Run it
+### First step: 
 ```
-roslaunch gazebo_ros empty_world.launch
+roslaunch pri_sjr_gazebo orthrus_control.launch
 ```
-### Add a model
+This command will launch Gazebo, spawn the Orthrus model and start up nodes that interface the model's joints with ROS. From there Float64 messages can be sent that will actuate each joint. 
+### Additional scripts for use with Gazebo
 ```
-rosrun gazebo_ros spawn_model -file models/chimera/model.sdf -sdf -x 0 -y 0 -z 1 -model cerberus
+rosrun pri_sjr_gazebo set_couplers_forward.py
 ```
+Turns the couplers that connect the robot's wheels with the body so that all the wheels are pointed in the same 'forward' direction.
+```
+rosrun pri_sjr_gazebo coupler_angle_calculator.py
+```
+Translates twist messages sent on topic /cmd_vel to steering angles for the wheel couplers and wheel speeds. 
+
+
 
 ### Visualizing with rviz
 Use a launch file. Example (from here[https://answers.ros.org/question/61479/adding-robot_description-to-parameter-server/]):
