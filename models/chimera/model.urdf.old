@@ -1,126 +1,11 @@
 <?xml version="1.0" ?>
-<robot name="orthrus">
+<robot name="chimera">
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/orthrus</robotNamespace>
     </plugin>
-    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
-      <alwaysOn>true</alwaysOn>
-      <bodyName>base_footprint</bodyName>
-      <topicName>imu</topicName>
-      <serviceName>imu_service</serviceName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <updateRate>20.0</updateRate>
-    </plugin>
-
-    <material name="blue">
-      <color rgba="0 0 0.8 1"/>
-    </material>
-    <material name="black">
-      <color rgba="0 0 0 1"/>
-    </material>
-    <material name="white">
-      <color rgba="1 1 1 1"/>
-    </material>
-    <material name="red">
-      <color rgba="0.8 0.0 0.0 1.0"/>
-    </material>
   </gazebo>
-
-  <!-- taken from http://gazebosim.org/tutorials?tut=ros_gzplugins#Laser-->
-  <!-- hokuyo -->
-  <gazebo reference="hokuyo_link">
-    <sensor type="gpu_ray" name="head_hokuyo_sensor">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>720</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
-            <max_angle>1.570796</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.10</min>
-          <max>30.0</max>
-          <resolution>0.01</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <!-- Noise parameters based on published spec for Hokuyo laser
-               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
-               reading. -->
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-        <topicName>/rrbot/laser/scan</topicName>
-        <frameName>hokuyo_link</frameName>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <joint name="hokuyo_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="0.25 0.25 0.6" rpy="0 0 0.523599"/>
-    <parent link="chassis"/>
-    <child link="hokuyo_link"/>
-  </joint>
-  <!-- Hokuyo Laser -->
-  <link name="hokuyo_link">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.1 0.1 0.1"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <!-- <mesh filename="package://rrbot_description/meshes/hokuyo.dae"/> -->
-        <box size="0.1 0.1 0.1"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <mass value="1e-5" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-    </inertial>
-  </link>
-  <!-- end of code taken from gazebosim -->
-  
-  <!-- total X: 0.45167, y: 0.25767 -->
-  <joint name="chassis_red-stabilizer" type="fixed">
-    <parent link="chassis"/>
-    <child link="red-stabilizer"/>
-    <origin rpy="1.57079  0      -2.61799" xyz="-0.25    -0.14433  0.6"/>
-    
-    <axis xyz="0  0  1"/>
-    <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
-  </joint>
-  <joint name="red_stabilizer_coupler" type="continuous">
-    <parent link="red-stabilizer"/>
-    <child link="red-coupler"/>
-    <origin rpy="-1.57079  0       0" xyz="0.24457  -0.05  0"/>
-    <axis xyz="0  0  1"/>
-    <limit effort="100.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
-    <dynamics damping="0.0" friction="0.0"/>
-  </joint>
-  <joint name="red_coupler_wheel" type="continuous">
-    <parent link="red-coupler"/>
-    <child link="red-wheel"/>
-    <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
-    <axis xyz="0  0  1"/>
-    <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
-    <dynamics damping="0.7"/>
-  </joint>
-
-  <!-- NOTE TO SELF: Total dist from center to a wheel is 0.53324m -->
 
   <joint name="chassis_green-stabilizer" type="fixed">
     <parent link="chassis"/>
@@ -129,10 +14,11 @@
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
   </joint>
+  <!-- <joint name="green_stabilizer_coupler" type="revolute"> -->
   <joint name="green_stabilizer_coupler" type="continuous">
     <parent link="green-stabilizer"/>
     <child link="green-coupler"/>
-    <origin rpy="-1.57079  0       0" xyz="0.24457  -0.05  0"/>
+    <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
     <limit effort="10.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
     <dynamics damping="0.10" friction="0.0"/>
@@ -145,10 +31,32 @@
     <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
     <dynamics damping="0.7"/>
   </joint>
-
+  <joint name="chassis_red-stabilizer" type="fixed">
+    <parent link="chassis"/>
+    <child link="red-stabilizer"/>
+    <origin rpy="1.57079  0      -2.61799" xyz="-0.25    -0.14433  0.6"/>
+    <axis xyz="0  0  1"/>
+    <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
+  </joint>
+  <joint name="red_stabilizer_coupler" type="continuous">
+    <parent link="red-stabilizer"/>
+    <child link="red-coupler"/>
+    <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
+    <axis xyz="0  0  1"/>
+    <limit effort="100.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <joint name="red_coupler_wheel" type="continuous">
+    <parent link="red-coupler"/>
+    <child link="red-wheel"/>
+    <origin rpy="1.57079  0       0" xyz="0   0  -0.3"/>
+    <axis xyz="0  0  1"/>
+    <!-- <limit effort="100" lower="0" upper="0" velocity="10"/> -->
+    <dynamics damping="0.7"/>
+  </joint>
   <joint name="chassis_blue-stabilizer" type="fixed">
     <parent link="chassis"/>
-    <child link="blue-stabilizer"/>chimera_
+    <child link="blue-stabilizer"/>
     <origin rpy="1.57079  0      -0.52359" xyz="0.25    -0.14433  0.6"/>
     <axis xyz="0  0  1"/>
     <limit effort="0.0" lower="-0.4" upper="0.4" velocity="0.0"/>
@@ -156,7 +64,7 @@
   <joint name="blue_stabilizer_coupler" type="continuous">
     <parent link="blue-stabilizer"/>
     <child link="blue-coupler"/>
-    <origin rpy="-1.57079  0       0" xyz="0.24457  -0.05  0"/>
+    <origin rpy="-1.57079  0       0" xyz="0.4  -0.05  0"/>
     <axis xyz="0  0  1"/>
     <limit effort="100.0" lower="-3.141592654" upper="3.141592654" velocity="10.0"/>
     <dynamics damping="0.0" friction="0.0"/>
@@ -170,22 +78,21 @@
     <dynamics damping="0.7"/>
   </joint>
 
-<!-- Transmissions -->
-  <transmission name="red-wheel_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="red_coupler_wheel">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="red-wheel_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
   <transmission name="green-wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="green_coupler_wheel">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="green-wheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="red-wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="red_coupler_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="red-wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -231,7 +138,8 @@
     <inertial>
       <mass value="0.020"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx="2" ixy="0" ixz="0" iyy="2" iyz="0" izz="2"/>
     </inertial>
     <collision name="central-coll">
       <origin rpy="0  0  0" xyz="0    0    0.85"/>
@@ -318,91 +226,23 @@
       </geometry>
     </visual>
   </link>
-  <link name="red-stabilizer">
-    <inertial>
-      <mass value="3"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
-    </inertial>
-    <collision name="stabilizer-coll">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
-      <geometry>
-        <box size="0.34457 0.2 0.1"/>
-      </geometry>
-    </collision>
-    <visual name="stabilizer-vis">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
-      <geometry>
-        <box size="0.34457 0.2 0.1"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="red-coupler">
-    <inertial>
-      <mass value="1"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
-    </inertial>
-    <collision name="coupler-top-coll">
-      <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
-      <geometry>
-        <box size="0.2 0.2 0.025"/>
-      </geometry>
-    </collision>
-    <collision name="coupler-side-coll">
-      <origin rpy="0  0  0" xyz="0.075  0    -0.15"/>
-      <geometry>
-        <box size="0.05 0.2 0.3"/>
-      </geometry>
-    </collision>
-    <visual name="coupler-top-vis">
-      <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
-      <geometry>
-        <box size="0.2 0.2 0.025"/>
-      </geometry>
-    </visual>
-    <visual name="coupler-side-vis">
-      <origin rpy="0  0  0" xyz="0     0.075 -0.15"/>
-      <geometry>
-        <box size="0.2 0.05 0.3"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="red-wheel">
-    <inertial>
-      <mass value="3"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
-    </inertial>
-    <collision name="wheel-coll">
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
-      </geometry>
-    </collision>
-    <visual name="wheel-vis">
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
-      </geometry>
-    </visual>
-  </link>
   <link name="green-stabilizer">
     <inertial>
       <mass value="3"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial> 
     <collision name="stabilizer-coll">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
       <geometry>
-        <box size="0.34457 0.2 0.1"/>
+        <box size="0.5 0.2 0.1"/>
       </geometry>
     </collision>
     <visual name="stabilizer-vis">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
       <geometry>
-        <box size="0.34457 0.2 0.1"/>
+        <box size="0.5 0.2 0.1"/>
       </geometry>
     </visual>
   </link>
@@ -410,6 +250,7 @@
     <inertial>
       <mass value="1"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
     </inertial>
     <collision name="coupler-top-coll">
@@ -441,18 +282,91 @@
     <inertial>
       <mass value="3"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="wheel-coll">
       <origin rpy="0  0  0" xyz="0  0  0"/>
       <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
+        <cylinder length="0.1" radius="0.25"/>
       </geometry>
     </collision>
     <visual name="wheel-vis">
       <origin rpy="0  0  0" xyz="0  0  0"/>
       <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
+        <cylinder length="0.1" radius="0.25"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="red-stabilizer">
+    <inertial>
+      <mass value="3"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
+    </inertial>
+    <collision name="stabilizer-coll">
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
+      <geometry>
+        <box size="0.5 0.2 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="stabilizer-vis">
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
+      <geometry>
+        <box size="0.5 0.2 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="red-coupler">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
+    </inertial>
+    <collision name="coupler-top-coll">
+      <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
+      <geometry>
+        <box size="0.2 0.2 0.025"/>
+      </geometry>
+    </collision>
+    <collision name="coupler-side-coll">
+      <origin rpy="0  0  0" xyz="0.075  0    -0.15"/>
+      <geometry>
+        <box size="0.05 0.2 0.3"/>
+      </geometry>
+    </collision>
+    <visual name="coupler-top-vis">
+      <origin rpy="0  0  0" xyz="0      0     -0.0125"/>
+      <geometry>
+        <box size="0.2 0.2 0.025"/>
+      </geometry>
+    </visual>
+    <visual name="coupler-side-vis">
+      <origin rpy="0  0  0" xyz="0     0.075 -0.15"/>
+      <geometry>
+        <box size="0.2 0.05 0.3"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="red-wheel">
+    <inertial>
+      <mass value="3"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
+      <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
+    </inertial>
+    <collision name="wheel-coll">
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.25"/>
+      </geometry>
+    </collision>
+    <visual name="wheel-vis">
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.25"/>
       </geometry>
     </visual>
   </link>
@@ -460,18 +374,19 @@
     <inertial>
       <mass value="3"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="stabilizer-coll">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
       <geometry>
-        <box size="0.34457 0.2 0.1"/>
+        <box size="0.5 0.2 0.1"/>
       </geometry>
     </collision>
     <visual name="stabilizer-vis">
-      <origin rpy="-1.57079  0       0" xyz="0.172285  0    0"/>
+      <origin rpy="-1.57079  0       0" xyz="0.25  0    0"/>
       <geometry>
-        <box size="0.34457 0.2 0.1"/>
+        <box size="0.5 0.2 0.1"/>
       </geometry>
     </visual>
   </link>
@@ -479,6 +394,7 @@
     <inertial>
       <mass value="1"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="coupler-top-coll">
@@ -522,18 +438,19 @@
     <inertial>
       <mass value="3"/>
       <origin rpy="0  0  0" xyz="0  0  0"/>
+      <!-- <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3"/> -->
       <inertia ixx=".3" ixy="0" ixz="0" iyy=".3" iyz="0" izz=".3"/>
     </inertial>
     <collision name="wheel-coll">
       <origin rpy="0  0  0" xyz="0  0  0"/>
       <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
+        <cylinder length="0.1" radius="0.25"/>
       </geometry>
     </collision>
     <visual name="wheel-vis">
       <origin rpy="0  0  0" xyz="0  0  0"/>
       <geometry>
-        <cylinder length="0.1" radius="0.1778"/>
+        <cylinder length="0.1" radius="0.25"/>
       </geometry>
     </visual>
   </link>

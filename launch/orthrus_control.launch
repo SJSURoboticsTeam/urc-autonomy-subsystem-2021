@@ -1,9 +1,9 @@
 <launch>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find pri_sjr_gazebo)/config/orthrus_control.yaml" command="load"/>
+  <rosparam file="$(find pri_sjr_gazebo)/config/orthrus_control.yaml" command="load" />
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
@@ -13,18 +13,23 @@
         red_coupler_position_controller 
         green_coupler_position_controller 
         blue_coupler_position_controller 
-        joint_state_controller"/>
+        joint_state_controller" />
 
-  <param name="robot_description" command="cat '$(find pri_sjr_gazebo)/models/chimera/model.urdf'"/>
+  <param name="robot_description" command="cat '$(find pri_sjr_gazebo)/models/chimera/model.urdf'" />
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 1.0 -unpause -urdf -model orthrus -param robot_description" respawn="false" output="screen" />
-
-  <!-- convert joint states to TF transforms for rviz, etc -->
+        <!-- convert joint states to TF transforms for rviz, etc -->
+  <!-- disabled to test Nelson's implementation -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
         respawn="false" output="screen">
-    <remap from="/joint_states" to="/orthrus/joint_states" />
+        <remap from="/joint_states" to="/orthrus/joint_states" />
   </node>
-
+  <node name="tf_orthrus_publisher" pkg="pri_sjr_gazebo" type="tf_orthrus_publisher" />
   
+
+  <!-- tf2 listening crap -->
+  <!-- <node pkg="pri_sjr_gazebo" type="tf2_orthrus_listener.py" 
+          name="listener" output="screen"/>
+  <node name="orthrus_tf_broadcaster" pkg="pri_sjr_gazebo" type="tf2_orthrus_broadcaster.py" respawn="false" output="screen" /> -->
 
 </launch>
