@@ -1,0 +1,15 @@
+[submodule "beginner_tutorials"]
+  path   = src/beginner_tutorials
+  url    = git@github.com:SJSURoboticsTeam/urc-autonomy-subsystem-2021.git 
+  branch = test-ros-pkg-2021
+
+[submodule "gazebo2rviz"]
+  path   = src/gazebo2rviz
+  url    = https://github.com/andreasBihlmaier/gazebo2rviz.git 
+  branch = master 
+
+[submodule "pysdf"] 
+  path   = src/pysdf
+  url    = https://github.com/andreasBihlmaier/pysdf.git 
+  branch = master 
+ 
