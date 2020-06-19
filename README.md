@@ -1,4 +1,4 @@
-# urc-autonomy-subsystem
+# `urc-autonomy-subsystem`
 ## `main`
 
 Welcome.
