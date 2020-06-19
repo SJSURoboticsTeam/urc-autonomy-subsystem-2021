@@ -4,8 +4,10 @@
 Lorem ipsum, this is the test ROS workspace to explore the potential of managing individual ROS packages within a single repo via the use of branches and submodules. 
 
 ### System Dependencies/Compatibility
-* Ubuntu 16.04/ROS Kinetic, or
-* Ubuntu 18.04/ROS Melodic
+* Required system OS/ROS framework versions:
+    * Ubuntu 16.04/ROS Kinetic, or
+    * Ubuntu 18.04/ROS Melodic
+* [`catkin_tools`](https://catkin-tools.readthedocs.io/en/latest/installing.html)
 
 ### Init
 
