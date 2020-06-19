@@ -1,4 +1,8 @@
 # urc-autonomy-subsystem
-## test-ros-pkg-2021
+## `main`
 
-Hello world, this is a test package to examine the feasibility of managing individual ROS packages within a single repo via the use of branches and submodules.
+Welcome.
+
+## branches
+The following listing provides a short descriptor/navigation to this repo's branches
+* [`test-ros-pkg-2021`](https://github.com/SJSURoboticsTeam/urc-autonomy-subsystem-2021/tree/test-ros-pkg-2021): ROS package for testing feasibility of managing various packages within one repo via branches and submodules
