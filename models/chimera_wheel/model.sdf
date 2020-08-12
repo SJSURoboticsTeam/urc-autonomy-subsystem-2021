@@ -42,7 +42,7 @@
               <iyz>0</iyz>
               <izz>0.01</izz>
           </inertia>
-          <mass>0.3</mass>
+          <mass>3</mass>
       </inertial>
       <collision name = "wheel-coll">
         <geometry>

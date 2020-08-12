@@ -24,10 +24,11 @@
         respawn="false" output="screen">
         <remap from="/joint_states" to="/orthrus/joint_states" />
   </node>
-  <node name="tf_orthrus_publisher" pkg="pri_sjr_gazebo" type="tf_orthrus_publisher" />
+  <node pkg="pri_sjr_gazebo" name="tf_orthrus_publisher" type="tf_orthrus_publisher" />
+  <node pkg="pri_sjr_gazebo" name="coupler_angle_calculator" type="coupler_angle_calculator.py" output="screen" />
   
 
-  <!-- tf2 listening crap -->
+  <!-- tf2 listening -->
   <!-- <node pkg="pri_sjr_gazebo" type="tf2_orthrus_listener.py" 
           name="listener" output="screen"/>
   <node name="orthrus_tf_broadcaster" pkg="pri_sjr_gazebo" type="tf2_orthrus_broadcaster.py" respawn="false" output="screen" /> -->

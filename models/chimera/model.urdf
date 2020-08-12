@@ -30,7 +30,7 @@
 
   <!-- taken from http://gazebosim.org/tutorials?tut=ros_gzplugins#Laser-->
   <!-- hokuyo -->
-  <gazebo reference="hokuyo_link">
+  <!--<gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
@@ -50,11 +50,12 @@
           <resolution>0.01</resolution>
         </range>
         <noise>
-          <type>gaussian</type>
+          <type>gaussian</type> -->
           <!-- Noise parameters based on published spec for Hokuyo laser
                achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
                stddev of 0.01m will put 99.7% of samples within 0.03m of the true
                reading. -->
+          <!--
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
@@ -64,15 +65,15 @@
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>
-  </gazebo>
-  <joint name="hokuyo_joint" type="fixed">
+  </gazebo> 
+   <joint name="hokuyo_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="0.25 0.25 0.6" rpy="0 0 0.523599"/>
     <parent link="chassis"/>
     <child link="hokuyo_link"/>
-  </joint>
+  </joint> -->
   <!-- Hokuyo Laser -->
-  <link name="hokuyo_link">
+  <!-- <link name="hokuyo_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -82,7 +83,6 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <!-- <mesh filename="package://rrbot_description/meshes/hokuyo.dae"/> -->
         <box size="0.1 0.1 0.1"/>
       </geometry>
     </visual>
@@ -91,7 +91,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
-  </link>
+  </link> -->
   <!-- end of code taken from gazebosim -->
   
   <!-- total X: 0.45167, y: 0.25767 -->
@@ -454,6 +454,9 @@
       <geometry>
         <cylinder length="0.1" radius="0.1778"/>
       </geometry>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 2.0"/>
+      </material>
     </visual>
   </link>
   <link name="blue-stabilizer">

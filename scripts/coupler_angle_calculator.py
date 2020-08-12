@@ -46,14 +46,12 @@ def callback(data):
 
     theta_inner -= general_offset
     theta_outer -= general_offset
-    
 
     # Determine if robot will turn left or right
     if data.angular.z > 0:
         pub_coupler_green.publish(theta_inner + green_offset)
         pub_coupler_red.publish(theta_outer + red_offset)
         pub_coupler_blue.publish(-theta_back - general_offset)
-
     else:
         pub_coupler_green.publish(theta_outer + green_offset)
         pub_coupler_red.publish(theta_inner + red_offset)   
