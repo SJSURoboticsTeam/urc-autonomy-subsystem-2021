@@ -1,9 +1,20 @@
 # `urc-autonomy-subsystem`
-## `main`
+## `mpu9250_viz`
 
-Welcome.
+The contents of this branch serves to visualize data from the MPU 9250
 
-## branches
-The following listing provides a short descriptor/navigation to this repo's branches
-* [`test-ros-pkg-2021`](https://github.com/SJSURoboticsTeam/urc-autonomy-subsystem-2021/tree/test-ros-pkg-2021): ROS package for testing feasibility of managing various packages within one repo via branches and submodules
-* [`test-ros-ws-2021`](https://github.com/SJSURoboticsTeam/urc-autonomy-subsystem-2021/tree/test-ros-ws-2021): ROS workspace for testing feasibility of managing various packages within one repo via branches and submodules
+## Run it live
+1. Ensure `roscore` is live, and the `/imu/data` topic is publishing
+2. From this directory, 
+  1. `python pose\_repub.py`
+  2. `rviz -d imu\_vis.rviz`
+
+## Visualize a `rosbag`
+1. Ensure `roscore` is live, and
+  1. `rosparam set /use_sim_time true`
+  2. Ensure `/imu/data` from the bagfile is ready to publish with `rosbag play --clock --pause <your\_bag\_file>.bag
+2. From this directory,
+  1. `python pose\_repub.py`
+  2. `rviz -d imu\_vis.rviz`
+3. Unpause and run `rosbag play` (select the `terminal` window and press the <space> key)
+
