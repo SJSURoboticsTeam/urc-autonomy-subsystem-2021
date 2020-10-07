@@ -12,7 +12,7 @@ The contents of this branch serves to visualize data from the MPU 9250
 ## Visualize a `rosbag`
 1. Ensure `roscore` is live, and
   1. `rosparam set /use_sim_time true`
-  2. Ensure `/imu/data` from the bagfile is ready to publish with `rosbag play --clock --pause <your\_bag\_file>.bag
+  2. Ensure `/imu/data` from the bagfile is ready to publish with `rosbag play --clock --pause <your\_bag\_file>.bag`
 2. From this directory,
   1. `python pose\_repub.py`
   2. `rviz -d imu\_vis.rviz`
