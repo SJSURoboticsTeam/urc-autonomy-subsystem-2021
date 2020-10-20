@@ -1,0 +1,17 @@
+<launch>
+  <!-- D435 -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="camera"      value="cam_1" />
+    <arg name="serial_no"   value="828112073326" />
+    <arg name="align_depth" value="true" />
+    <arg name="filters"     value="pointcloud" />
+  </include>  
+
+  <include file="launch/tf1.launch"/>
+
+  <!-- T265 -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="camera"    value="cam_2" />
+    <arg name="serial_no" value="929122111643" />
+  </include>  
+</launch>

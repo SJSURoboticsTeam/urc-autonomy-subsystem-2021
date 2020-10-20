@@ -1,0 +1,7 @@
+<launch>
+    <include file="launch/rs_d400_and_t265.launch">
+      <arg name="serial_no_camera1" value="0000929122111643"/> 			<!-- Note: Replace with actual serial number (camera1 default: t265)-->
+      <arg name="serial_no_camera2" value="944122071240"/> 			<!-- Note: Replace with actual serial number (camera2 default: d400)-->
+      <!-- <arg name="serial_no_camera2" value="828112073326"/> -->			<!-- Note: Replace with actual serial number (camera2 default: d400)-->
+    </include>
+</launch>

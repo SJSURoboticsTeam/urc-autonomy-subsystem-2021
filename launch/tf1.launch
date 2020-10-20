@@ -1,0 +1,32 @@
+<launch>
+  <!--
+  <node 
+    pkg="tf"
+    type="static_transform_publisher"
+    name="d435_t265_link"
+    args="0 0 0.0495 0 0 0 /cam_1_link /cam_2_odom_frame 2"
+  />
+  -->
+  <node 
+    pkg="tf2_ros"
+    type="static_transform_publisher"
+    name="t265_link"
+    args="0 0 0.103 0 0 0 /map /cam_2_odom_frame"
+  />
+<!--
+    args="0 0 0.103 0 0 0 /base_link /cam_2_odom_frame"
+  />
+-->
+
+  <node 
+    pkg="tf2_ros"
+    type="static_transform_publisher"
+    name="d435_link"
+    args="0 0 0.1525 0 -1.570796 1.570796 /cam_2_odom_frame /cam_1_link"
+  />
+<!--
+    args="0 0 0.1525 0 -1.570796 1.570796 /odom /cam_1_link"
+  />
+-->
+
+</launch>

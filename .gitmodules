@@ -1,0 +1,24 @@
+[submodule "src/robot_localization"]
+	path = src/robot_localization
+	url = https://github.com/cra-ros-pkg/robot_localization.git
+    branch = melodic-devel
+
+[submodule "src/depthimage_to_laserscan"]
+	path = src/depthimage_to_laserscan
+	url = https://github.com/ros-perception/depthimage_to_laserscan.git
+    branch = melodic-devel
+
+[submodule "src/realsense-ros"]
+	path = src/realsense-ros
+	url = https://github.com/IntelRealSense/realsense-ros.git
+    branch = occupancy-mapping
+
+[submodule "src/navigation"]
+	path = src/navigation
+	url = git@github.com:ros-planning/navigation.git
+    branch = melodic-devel
+
+[submodule "src/husky"]
+	path = src/husky
+	url = git@github.com:husky/husky.git
+    branch = melodic-devel

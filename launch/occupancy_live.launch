@@ -1,0 +1,4 @@
+<launch>
+  <include file="launch/cameras_rs.launch"/>
+  <include file="$(find occupancy)/launch/occupancy.launch"/>
+</launch>

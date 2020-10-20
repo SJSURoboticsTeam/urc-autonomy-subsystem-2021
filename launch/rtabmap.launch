@@ -1,0 +1,45 @@
+<launch>
+  <!-- Kinect cloud to laser scan -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <param name="output_frame_id" value="cam_1_depth_optical_frame"/> 
+      <remap from="image"              to="/cam_1/depth/image_rect_raw"/>
+      <remap from="camera_info"        to="/cam_1/depth/camera_info"/>
+      <remap from="scan"               to="/cam_1/scan"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+
+  <!-- SLAM -->
+  <group ns="rtabmap">
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
+          <!-- <param name="frame_id" type="string" value="base_footprint"/> -->
+          <!-- <param name="frame_id" type="string" value="/cam_1_link" /> -->
+          <param name="frame_id" type="string" value="base_link" />
+
+          <param name="subscribe_depth" type="bool" value="true"/>
+          <param name="subscribe_scan" type="bool" value="true"/>
+
+          <!-- <remap from="odom" to="/cam_2/odom/sample"/> -->
+          <param name="visual_odometry" value="false" />
+          <param name="odom_topic"      value="/cam_2/odom/sample" />
+          <remap from="scan"               to="/cam_1/scan"/>
+
+          <remap from="rgb/image"       to="/cam_1/color/image_raw"/>
+          <remap from="depth/image"     to="/cam_1/aligned_depth_to_color/image_raw"/>
+          <remap from="rgb/camera_info" to="/cam_1/color/camera_info"/>
+
+          <param name="queue_size" type="int" value="10"/>
+
+          <!-- RTAB-Map's parameters -->
+          <param name="RGBD/ProximityBySpace"     type="string" value="false"/>
+          <param name="RGBD/AngularUpdate"        type="string" value="0.01"/>
+          <param name="RGBD/LinearUpdate"         type="string" value="0.01"/>
+          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+          <param name="Reg/Force3DoF"             type="string" value="true"/>
+          <param name="Vis/MinInliers"            type="string" value="12"/>
+          <param name="approx_sync" value="true" />
+          <!-- <param name="publish_tf_odom" value="true" /> -->
+          <!-- <param name="publish_tf_map" value="true" /> -->
+          <param name="publish_tf" value="true" />
+    </node>
+  </group>
+</launch>
