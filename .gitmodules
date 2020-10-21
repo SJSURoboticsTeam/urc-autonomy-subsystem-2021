@@ -22,3 +22,18 @@
 	path = src/husky
 	url = git@github.com:husky/husky.git
     branch = melodic-devel
+
+[submodule "src/dynamic_reconfigure"]
+	path = src/dynamic_reconfigure
+	url = git@github.com:ros/dynamic_reconfigure.git
+
+[submodule "src/ddynamic_reconfigure"]
+	path = src/ddynamic_reconfigure
+	url = git@github.com:pal-robotics/ddynamic_reconfigure.git
+    branch = kinetic-devel
+
+[submodule "src/geometry2"]
+	path = src/geometry2
+	url = git@github.com:ros/geometry2.git
+    branch = melodic-devel
+
