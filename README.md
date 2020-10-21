@@ -14,11 +14,11 @@ sudo apt-get install libgeographic-dev
 ## Packages
 
 * [`robot_localization`](https://github.com/cra-ros-pkg/robot_localization.git)
-* [`navigation`](git@github.com:ros-planning/navigation.git)
+* [`navigation`](https://github.com/ros-planning/navigation.git)
 * [`realsense-ros`](https://github.com/IntelRealSense/realsense-ros.git)
 * [`depthimage_to_laserscan`](https://github.com/ros-perception/depthimage_to_laserscan.git)
-* [`geometry2`](git@github.com:ros/geometry2.git)
-* [`husky`](git@github.com:husky/husky.git)
-* [`ddynamic_reconfigure`](git@github.com:pal-robotics/ddynamic_reconfigure.git)
+* [`geometry2`](https://github.com/ros/geometry2.git)
+* [`husky`](https://github.com/husky/husky.git)
+* [`ddynamic_reconfigure`](https://github.com/pal-robotics/ddynamic_reconfigure.git)
     * Required by `realsense-ros`
-* [`dynamic_reconfigure`](git@github.com:ros/dynamic_reconfigure.git)
+* [`dynamic_reconfigure`](https://github.com/ros/dynamic_reconfigure.git)
