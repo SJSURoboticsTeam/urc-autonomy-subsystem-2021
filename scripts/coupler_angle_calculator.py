@@ -26,42 +26,54 @@ pub_speed_blue = rospy.Publisher('/orthrus/blue_wheel_velocity_controller/comman
 
 
 def callback(data):
-    theta = data.angular.z
-    velocity = data.linear.x
+    # allows for the robot spin in place
+    if (data.linear.x == 0 and data.angular.z != 0):
+        velocity = data.angular.z
+        # setting the angle of each coupler to the general offset (90 degrees in radians) has them default to the flat side of the wheel facing the center of the bot
+        pub_coupler_green.publish(general_offset)
+        pub_coupler_red.publish(general_offset)
+        pub_coupler_blue.publish(general_offset)
+        pub_speed_red.publish(velocity)
+        pub_speed_green.publish(velocity)
+        pub_speed_blue.publish(velocity)
 
-    radius = float("inf")
-
-    # calculate turning radius
-    if theta != 0.0:
-        radius = abs(velocity) / abs(theta)
-
-    theta_inner = math.atan( (radius - L_side) / (2 * A_side) )
-    r_inner = math.sqrt( (radius - L_side/2)**2 + A_side**2)
-
-    theta_outer = math.atan( (radius + L_side) / (2 * A_side) )
-    r_outer = math.sqrt( (radius + L_side/2)**2 + A_side**2)
-
-    theta_back = math.atan( radius / B_side )
-    r_back = math.sqrt( radius**2 + A_side**2 )
-
-    theta_inner -= general_offset
-    theta_outer -= general_offset
-
-    # Determine if robot will turn left or right
-    if data.angular.z > 0:
-        pub_coupler_green.publish(theta_inner + green_offset)
-        pub_coupler_red.publish(theta_outer + red_offset)
-        pub_coupler_blue.publish(-theta_back - general_offset)
     else:
-        pub_coupler_green.publish(theta_outer + green_offset)
-        pub_coupler_red.publish(theta_inner + red_offset)   
-        pub_coupler_blue.publish(theta_back - general_offset)
+        theta = data.angular.z
+        velocity = data.linear.x
 
-    #pub_coupler_blue.publish(theta_back)
+        radius = float("inf")
 
-    pub_speed_red.publish(velocity)
-    pub_speed_green.publish(velocity)
-    pub_speed_blue.publish(velocity)
+        # calculate turning radius
+        if theta != 0.0:
+            radius = abs(velocity) / abs(theta)
+
+        theta_inner = math.atan( (radius - L_side) / (2 * A_side) )
+        r_inner = math.sqrt( (radius - L_side/2)**2 + A_side**2)
+
+        theta_outer = math.atan( (radius + L_side) / (2 * A_side) )
+        r_outer = math.sqrt( (radius + L_side/2)**2 + A_side**2)
+
+        theta_back = math.atan( radius / B_side )
+        r_back = math.sqrt( radius**2 + A_side**2 )
+
+        theta_inner -= general_offset
+        theta_outer -= general_offset
+
+        # Determine if robot will turn left or right
+        if data.angular.z > 0:
+            pub_coupler_green.publish(theta_inner + green_offset)
+            pub_coupler_red.publish(theta_outer + red_offset)
+            pub_coupler_blue.publish(-theta_back - general_offset)
+        else:
+            pub_coupler_green.publish(theta_outer + green_offset)
+            pub_coupler_red.publish(theta_inner + red_offset)   
+            pub_coupler_blue.publish(theta_back - general_offset)
+
+        #pub_coupler_blue.publish(theta_back)
+
+        pub_speed_red.publish(velocity)
+        pub_speed_green.publish(velocity)
+        pub_speed_blue.publish(velocity)
 
 def listener():
     rospy.init_node('coupler_angle_calculator')
