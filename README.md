@@ -1,4 +1,7 @@
 # Models for Gazebo simulation, SJSU Robotics 2020
+## Dependency
+`apt-get install ros-melodic-effort-controllers`
+
 ## Usage
 ### First step: 
 ```
