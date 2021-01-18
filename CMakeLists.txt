@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(pri_sjr_gazebo)
+project(urc-autonomy-subsystem-2021)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -22,14 +22,15 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(tf_orthrus_publisher scripts/tf_orthrus_publisher.cpp)
+#add_executable(tf_orthrus_publisher scripts/tf_orthrus_publisher.cpp)
 
- target_link_libraries(tf_orthrus_publisher
-   ${catkin_LIBRARIES}
- )
+#target_link_libraries(tf_orthrus_publisher
+#   ${catkin_LIBRARIES}
+#)
 
- catkin_install_python(PROGRAMS
+catkin_install_python(PROGRAMS
   scripts/twist_to_gazebo.py
   scripts/coupler_angle_calculator.py
   scripts/set_couplers_forward.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)

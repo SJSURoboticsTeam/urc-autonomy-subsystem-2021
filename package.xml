@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>pri_sjr_gazebo</name>
+  <name>urc-autonomy-subsystem-2021</name>
   <version>0.0.0</version>
   <description>The Orthrus simulation package</description>
 
@@ -67,6 +67,5 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-
   </export>
 </package>
