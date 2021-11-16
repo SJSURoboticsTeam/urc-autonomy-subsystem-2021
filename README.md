@@ -1,4 +1,8 @@
 # `urc-autonomy-subsystem`
+
+## References
+Refer to the detailed design from 2021 - https://docs.google.com/presentation/d/15opZHvxMdbDmjGm4CclIIuBmULacNo6DH9MWP78ihtQ/edit#slide=id.g7fea79ccaa_6_11
+
 ## `main`
 
 Welcome.
